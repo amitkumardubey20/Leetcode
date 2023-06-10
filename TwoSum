@@ -1,1 +1,86 @@
 
+Two Sum problem
+
+1. Brute Force
+approach ................................................................................................................................
+use two pointer approach first fis the one pinter at first index and move the second pointer all over the length of the array and then check 
+if the sum of the two index's data is equal to the target or not if yes then return the new array and inside that array store the indexes.
+...........................................................................................................................................
+
+import java.util.*;
+public class Two_Sum {
+
+    public static void main(String args[]){
+//        Scanner sc=new Scanner(System.in);
+//        int n=sc.nextInt();
+        int a[]={2,7,11,15};
+        int n=4;
+        int target=9;
+      int op[]=twoSum(a,target);
+
+        System.out.println(Arrays.toString(op));
+
+    }
+   // brute force method
+    public static int[] twoSum(int a[],int target){
+        int l=a.length;
+        int count=0;
+        int na[]=new int[2];
+        for(int i=0;i<l;i++){
+            for(int j=i+1;j<l;j++){
+                if(target==a[i]+a[j]){
+                    na[0]=i;
+                    na[1]=j;
+                }
+            }
+        }
+     return na;
+    }
+    
+2. Using HashMap
+approach.............................................................................................................................................................
+first create the map and fill the arrays data in the hashmap and then subtract the first element with the target to get the remaining element
+and then search this remaining element in the hashmap and also check if the visited index== current index then skip and return the new array and store the index inside the array.
+.........................................................................................................................................................................
+
+import java.util.*;
+public class Two_Sum {
+
+    public static void main(String args[]){
+//        Scanner sc=new Scanner(System.in);
+//        int n=sc.nextInt();
+        int a[]={2,7,11,15};
+        int n=4;
+        int target=9;
+      int op[]=twoSum(a,target);
+
+        System.out.println(Arrays.toString(op));
+
+    }
+ public static int [] twoSum(int a[],int target){
+        HashMap<Integer,Integer>map=new HashMap<>();
+        // filling the map
+         for(int i=0;i<a.length;i++){
+             map.put(a[i],i);
+         }
+
+         // searching the elements inside the map
+
+         for(int i=0;i<a.length;i++){
+             int data=a[i];
+             int rem=target-data;
+
+             if(map.containsKey(rem)){
+                 int index=map.get(rem);
+                 if(index==i) // searching the element at most once
+                     continue;;
+                 return new int[]{i,index};  // returning the new array with first index and where the rem element found
+             }
+
+             }
+         return new int[]{};
+         }
+
+}
+
+
